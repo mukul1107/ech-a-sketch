@@ -1,0 +1,24 @@
+/* #root {
+    display: grid;
+    } */
+
+
+#root{
+    display: flex;
+    width: 30px;
+}
+#root>div {
+    background-color: red;
+}
+
+.main{
+    display: grid;
+    grid-template-columns: repeat(16, 30px);
+    gap: 2px;
+}
+.squares {
+    width: 30px;
+    height: 30px;
+    background-color: #392270;
+}
+
