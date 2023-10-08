@@ -1,35 +1,63 @@
-document.addEventListener("DOMContentLoaded", () => {
+const root = document.querySelector("#root");
+const btn = document.querySelector("#root > button");
+const heading = document.querySelector("#dis")
+let isTouching = false; // To track touch interaction
 
-    const root = document.querySelector("#root")
-    const btn = document.querySelector("#btn")
+function changeColor(sqr) {
+    sqr.style.backgroundColor = "black";
+    sqr.style.color = "black";
+}
 
+function handleTouchMove(event) {
+    if (isTouching) {
+        const touchedElement = document.elementFromPoint(
+            event.touches[0].clientX,
+            event.touches[0].clientY
+        );
 
+        if (touchedElement && touchedElement.classList.contains("squares")) {
+            changeColor(touchedElement);
+        }
 
-    function generateGrid(num = 16) {
+        event.preventDefault()
+    }
+}
 
-        for (let i = 0; i < num; i++) {
-            for (let j = 0; j < num; j++) {
-                const div = document.createElement("div");
-                div.classList.add("squares");
-                root.appendChild(div);
-            }
+function generateGrid(num = 16, className = "active") {
+    for (let i = 0; i < num; i++) {
+        for (let j = 0; j < num; j++) {
+            const sqr = document.createElement("div");
+            sqr.classList.add("squares");
+            sqr.classList.add(className);
+
+            // Add event listener for hover (for desktop)
+            sqr.addEventListener("mouseover", () => {
+                changeColor(sqr);
+            });
+
+            // Add event listener for click (for touch devices)
+            sqr.addEventListener("click", () => {
+                changeColor(sqr);
+            });
+
+            root.appendChild(sqr);
+            heading.textContent = "Move over the Boxes to draw!"
+            btn.remove();
         }
     }
+}
 
+// Add event listeners for touch interaction
+root.addEventListener("touchstart", () => {
+    isTouching = true;
+});
 
-    function chooseGrid() {
-        if (btn.classList.contains('grid-16')) {
-            generateGrid(16)
-        } else if (btn.classList.contains('grid-22')) {
-            generateGrid(22)
-        } else if (btn.classList.contains('grid-30')) {
-            generateGrid(30)
-        }
-    }
+root.addEventListener("touchend", () => {
+    isTouching = false;
+});
 
-    btn.addEventListener('click', ()=>{
-        chooseGrid()
-    })
-})
+root.addEventListener("touchmove", handleTouchMove);
 
-
+btn.addEventListener("click", () => {
+    generateGrid();
+});

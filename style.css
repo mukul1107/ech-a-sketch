@@ -1,24 +1,38 @@
-/* #root {
+*{
+    scroll-snap-type: none;
+}
+
+#root {
     display: grid;
-    } */
-
-
-#root{
-    display: flex;
     width: 30px;
-}
-#root>div {
-    background-color: red;
+
 }
 
-.main{
+#dis{
+    font-weight: bold;
+    font-size: large;
+}
+
+#root>button {
+    width: fit-content;
+}
+
+
+.main {
     display: grid;
     grid-template-columns: repeat(16, 30px);
     gap: 2px;
 }
+
 .squares {
     width: 30px;
     height: 30px;
-    background-color: #392270;
+    background-color: plum;
+    transition: background-color 0.2s;
+}
+
+.squares:hover {
+    background-color: black;
+    color: black;
 }
 
