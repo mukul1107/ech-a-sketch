@@ -75,3 +75,4 @@ root.addEventListener("touchmove", handleTouchMove);
 btn.addEventListener("click", () => {
     generateGrid();
 });
+
