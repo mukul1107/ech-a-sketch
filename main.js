@@ -76,3 +76,4 @@ btn.addEventListener("click", () => {
     generateGrid();
 });
 
+
