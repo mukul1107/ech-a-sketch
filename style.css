@@ -34,7 +34,7 @@
 .squares {
     width: 30px;
     height: 30px;
-    background-color: plum;
+    background-color: blue;
     transition: background-color 0.2s;
 }
 
